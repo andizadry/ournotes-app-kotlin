@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="challenge4_">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#252525</item>
+    </style>
+    <style name="mulailah_me">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#03C3FF</item>
+    </style>
+    <style name="selamat_dat">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#252525</item>
+    </style>
+    <style name="silahkan_lo">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#252525</item>
+    </style>
+    <style name="login">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="belum_punya">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#252525</item>
+    </style>
+    <style name="deskripsi">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="tittle">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#006585</item>
+    </style>
+</resources>
