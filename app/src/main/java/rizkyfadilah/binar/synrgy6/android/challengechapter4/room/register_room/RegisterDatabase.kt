@@ -1,29 +1,29 @@
-package rizkyfadilah.binar.synrgy6.android.challengechapter4.database.resgister_database
+package rizkyfadilah.binar.synrgy6.android.challengechapter4.room.register_room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-// TODO 3 : Create Database for Register
+// TODO 3: Buat Database untuk Pendaftaran
 @Database(entities = [RegisterEntity::class], version = 1, exportSchema = false)
-// TODO 4 : Create abstract class for Register
+// TODO 4: Buat kelas abstrak untuk Pendaftaran
 abstract class RegisterDatabase : RoomDatabase() {
 
-    // TODO 5 : Create abstract val for Register
+    // TODO 5: Buat val abstrak untuk Pendaftaran
     abstract val registerDatabaseDao: RegisterDatabaseDao
 
-    // TODO 6 : Create companion object for Register
-    companion object{
+    // TODO 6: Buat objek companion untuk Pendaftaran
+    companion object {
         @Volatile
         private var INSTANCE: RegisterDatabase? = null
 
-        // TODO 7 : Create fun getInstance for Register
+        // TODO 7: Buat fungsi getInstance untuk Pendaftaran
         fun getInstance(context: Context): RegisterDatabase {
-            synchronized(this){
+            synchronized(this) {
                 var instance = INSTANCE
 
-                if (instance == null){
+                if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         RegisterDatabase::class.java,

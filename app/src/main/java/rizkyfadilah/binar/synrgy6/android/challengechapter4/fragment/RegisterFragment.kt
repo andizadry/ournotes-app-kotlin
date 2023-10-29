@@ -11,15 +11,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.R
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.resgister_database.RegisterDatabase
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.room.register_room.RegisterDatabase
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.databinding.FragmentRegisterBinding
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.repository.RegisterRepository
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.RegisterViewModel
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.RegisterViewModelFactory
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.repo.RegisterRepository
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.register_vm.RegisterViewModel
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.register_vm.RegisterFactory
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var registerViewModel: RegisterViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,30 +36,34 @@ class RegisterFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dao = RegisterDatabase.getInstance(application).registerDatabaseDao
         val repository = RegisterRepository(dao)
-        val factory = RegisterViewModelFactory(repository, application)
+        val factory = RegisterFactory(repository, application)
 
-        registerViewModel = ViewModelProvider(this,factory).get(RegisterViewModel::class.java)
+        // Inisialisasi ViewModel
+        registerViewModel = ViewModelProvider(this, factory).get(RegisterViewModel::class.java)
 
         binding.myLoginViewModel = registerViewModel
-
         binding.lifecycleOwner = this
-        registerViewModel.errorToast.observe(viewLifecycleOwner, Observer {hasError ->
-            if (hasError){
-                Toast.makeText(context, "Error! Check your username, password, and email!", Toast.LENGTH_SHORT).show()
+
+        // Observer untuk kesalahan
+        registerViewModel.errorToast.observe(viewLifecycleOwner, Observer { hasError ->
+            if (hasError) {
+                Toast.makeText(context, "Error! Cek kembali username, email dan password anda!", Toast.LENGTH_SHORT).show()
                 registerViewModel.donetoast()
             }
         })
 
-        registerViewModel.navigateto.observe(viewLifecycleOwner, Observer {hasFinished ->
-            if (hasFinished == true){
-                Log.i("MYTAG","insidi observe")
+        // Observer untuk navigasi
+        registerViewModel.navigateto.observe(viewLifecycleOwner, Observer { hasFinished ->
+            if (hasFinished == true) {
+                Log.i("MYTAG", "Insidi observe")
                 displayUserList()
             }
         })
     }
 
-    private fun displayUserList(){
-        Log.i("MYTAG","insidisplayUsersList")
+    // Fungsi untuk menampilkan daftar pengguna setelah registrasi
+    private fun displayUserList() {
+        Log.i("MYTAG", "InsidisplayUsersList")
         NavHostFragment.findNavController(this).navigate(R.id.action_registerFragment_to_loginFragment)
     }
 }

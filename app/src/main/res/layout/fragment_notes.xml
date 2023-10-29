@@ -8,6 +8,7 @@
     android:paddingTop="12dp"
     tools:context=".fragment.NotesFragment">
 
+    <!-- Logo Aplikasi -->
     <ImageView
         android:id="@+id/ic_logo"
         android:layout_width="53dp"
@@ -19,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Tombol Logout -->
     <Button
         android:id="@+id/tv_logout"
         android:layout_width="85dp"
@@ -33,6 +35,7 @@
         tools:layout_editor_absoluteY="5dp"
         tools:ignore="MissingConstraints" />
 
+    <!-- Selamat Datang User -->
     <TextView
         android:id="@+id/tv_welcome_user"
         android:layout_width="wrap_content"
@@ -47,6 +50,7 @@
         app:layout_constraintTop_toTopOf="@+id/ic_logo"
         app:layout_constraintVertical_bias="0.352" />
 
+    <!-- Label "Daftar Catatan" -->
     <TextView
         android:id="@+id/tv_hello"
         android:layout_width="wrap_content"
@@ -61,6 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_welcome_user" />
 
+    <!-- RecyclerView untuk Menampilkan Catatan -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notes"
         android:layout_width="match_parent"
@@ -68,8 +73,9 @@
         app:layout_constraintTop_toBottomOf="@id/tv_hello"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
-        tools:listitem="@layout/notes_item"/>
+        tools:listitem="@layout/item_notes" />
 
+    <!-- Tombol Floating untuk Menambah Catatan Baru -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_note"
         android:layout_width="wrap_content"

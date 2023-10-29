@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    File XML ini digunakan untuk mendefinisikan tata letak (layout) fragment yang digunakan untuk menghapus catatan.
+    Tata letak ini berisi elemen-elemen seperti judul, dua tombol (hapus dan batalkan), dan tampilan teks.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp">
 
+    <!-- TextView untuk judul "Delete Note" -->
     <TextView
         android:id="@+id/tv_delete_note"
         android:layout_width="wrap_content"
@@ -17,6 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Tombol "Delete" -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_delete"
         android:layout_width="120dp"
@@ -30,6 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_delete_note" />
 
+    <!-- Tombol "Cancel" -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_cancel"
         android:layout_width="120dp"

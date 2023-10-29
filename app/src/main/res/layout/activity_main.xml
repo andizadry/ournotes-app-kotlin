@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    File XML ini digunakan untuk mendefinisikan tata letak (layout) Activity utama (MainActivity) dalam aplikasi Android.
+    Activity utama adalah titik masuk utama ke aplikasi dan akan menampilkan fragmen-fragmen yang sesuai.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--
+        FragmentContainerView adalah wadah yang digunakan untuk menampilkan fragmen-fragmen dalam tata letak.
+        Ini adalah wadah default untuk mengelola navigasi antar fragmen dalam aplikasi.
+    -->
     <androidx.fragment.app.FragmentContainerView
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
@@ -16,6 +25,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
+        app:layout_constraintRight_toRightOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,10 +5,9 @@
     tools:context=".fragment.RegisterFragment">
 
     <data>
-
         <variable
             name="myLoginViewModel"
-            type="rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.RegisterViewModel" />
+            type="rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.register_vm.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

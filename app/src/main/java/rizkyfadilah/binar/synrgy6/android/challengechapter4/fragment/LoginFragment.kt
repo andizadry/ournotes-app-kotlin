@@ -10,11 +10,11 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.R
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.database.resgister_database.RegisterDatabase
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.room.register_room.RegisterDatabase
 import rizkyfadilah.binar.synrgy6.android.challengechapter4.databinding.FragmentLoginBinding
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.repository.RegisterRepository
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.LoginViewModel
-import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.LoginViewModelFactory
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.repo.RegisterRepository
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.login_vm.LoginFactory
+import rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.login_vm.LoginViewModel
 
 class LoginFragment : Fragment() {
 
@@ -25,7 +25,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Mengisi layout untuk fragment ini
         binding = FragmentLoginBinding.inflate(inflater)
         return binding.root
     }
@@ -33,37 +33,42 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Inisialisasi ViewModel dan repository
         val application = requireNotNull(this.activity).application
         val dao = RegisterDatabase.getInstance(application).registerDatabaseDao
         val repository = RegisterRepository(dao)
-        val factory = LoginViewModelFactory(repository, application)
+        val factory = LoginFactory(repository, application)
 
-        loginViewModel = ViewModelProvider(this,factory).get(LoginViewModel::class.java)
+        loginViewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
 
+        // Menghubungkan ViewModel dengan layout binding
         binding.myLoginViewModel = loginViewModel
 
+        // Menghubungkan binding dengan pemilik siklus
         binding.lifecycleOwner = this
 
+        // Mengamati LiveData untuk menampilkan pesan kesalahan saat login gagal
         loginViewModel.errorToast.observe(viewLifecycleOwner, { hasError ->
             if (hasError == true) {
-                Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Login Gagal", Toast.LENGTH_SHORT).show()
                 loginViewModel.donetoast()
             }
         })
 
+        // Mengamati LiveData untuk mengarahkan pengguna ke tampilan beranda setelah login berhasil
         loginViewModel.navigateToHome.observe(viewLifecycleOwner, { hasFinished ->
             if (hasFinished == true) {
-                Log.i("MYTAG", "insidi observe")
+                Log.i("MYTAG", "Masuk ke observe")
                 navigateToHome()
                 loginViewModel.doneNavigating()
-                Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Login Berhasil", Toast.LENGTH_SHORT).show()
             }
         })
 
+        // Mengamati LiveData untuk mengarahkan pengguna ke tampilan pendaftaran
         loginViewModel.navigatetoRegister.observe(viewLifecycleOwner) { hasFinished ->
             if (hasFinished == true) {
-                Log.i("MYTAG", "insidi observe")
+                Log.i("MYTAG", "Masuk ke observe")
                 navigateToRegister()
                 loginViewModel.doneNavigating()
             } else {
@@ -71,6 +76,7 @@ class LoginFragment : Fragment() {
             }
         }
 
+        // Mengatur latar belakang input email saat fokus berubah
         binding.etEmail.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (!hasFocus) {
                 binding.etEmail.setBackgroundResource(R.drawable.bg_edittext)
@@ -79,6 +85,7 @@ class LoginFragment : Fragment() {
             }
         }
 
+        // Mengatur latar belakang input password saat fokus berubah
         binding.etPassword.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (!hasFocus) {
                 binding.etPassword.setBackgroundResource(R.drawable.bg_edittext)
@@ -88,12 +95,14 @@ class LoginFragment : Fragment() {
         }
     }
 
+    // Fungsi untuk mengarahkan ke tampilan beranda
     private fun navigateToHome() {
-        Log.i("MYTAG", "insidi navigate")
+        Log.i("MYTAG", "Masuk ke navigate")
         NavHostFragment.findNavController(this).navigate(R.id.action_loginFragment_to_notesFragment)
     }
-    private  fun navigateToRegister(){
+
+    // Fungsi untuk mengarahkan ke tampilan pendaftaran
+    private fun navigateToRegister() {
         NavHostFragment.findNavController(this).navigate(R.id.action_loginFragment_to_registerFragment)
     }
-
 }

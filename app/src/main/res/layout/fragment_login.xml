@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Ini adalah berkas layout untuk tampilan LoginFragment -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragment.LoginFragment">
 
+    <!-- Data binding untuk menghubungkan dengan ViewModel -->
     <data>
         <variable
             name="myLoginViewModel"
-            type="rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.LoginViewModel" />
+            type="rizkyfadilah.binar.synrgy6.android.challengechapter4.viewmodel.login_vm.LoginViewModel" />
     </data>
+
+    <!-- Tampilan utama -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp">
 
+        <!-- Logo Aplikasi -->
         <ImageView
             android:id="@+id/ic_logo"
             android:layout_width="94dp"
@@ -21,12 +26,12 @@
             android:layout_marginTop="68dp"
             android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Selamat Datang -->
         <TextView
-            android:id="@+id/tv_selamat"
+            android:id="@+id/tv_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -38,8 +43,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ic_logo" />
 
+        <!-- Mulailah -->
         <TextView
-            android:id="@+id/tv_mulai"
+            android:id="@+id/tv_note_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -48,10 +54,11 @@
             android:textAppearance="@style/mulailah_me"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_selamat" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_welcome" />
 
+        <!-- Silahkan Login -->
         <TextView
-            android:id="@+id/tv_silahkan"
+            android:id="@+id/tv_note_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -61,8 +68,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_mulai" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_note_welcome" />
 
+        <!-- Label Email -->
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
@@ -73,8 +81,9 @@
             android:textAppearance="@style/silahkan_lo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_silahkan" />
+            app:layout_constraintTop_toTopOf="@+id/tv_note_login" />
 
+        <!-- Input Email -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_email"
             android:layout_width="330dp"
@@ -102,7 +111,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
+        <!-- Label Password -->
         <TextView
             android:id="@+id/tv_password"
             android:layout_width="wrap_content"
@@ -112,11 +121,11 @@
             android:text="@string/password"
             android:textAppearance="@style/silahkan_lo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email"
             tools:ignore="MissingConstraints" />
 
+        <!-- Input Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_password"
             android:layout_width="330dp"
@@ -142,7 +151,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
+        <!-- Tombol Login -->
         <Button
             android:id="@+id/btn_login"
             android:layout_width="197dp"
@@ -157,14 +166,13 @@
             android:text="@string/login"
             android:textAppearance="@style/login"
             android:textSize="12sp"
-            app:layout_constraintCircleRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_password" />
 
+        <!-- Teks "Belum Punya Akun?" -->
         <TextView
             android:id="@+id/tv_signhere"
             android:layout_width="wrap_content"
@@ -180,8 +188,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
+        <!-- Teks "Challenge4" -->
         <TextView
-            android:id="@+id/challenge4_"
+            android:id="@+id/tv_challenge4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -196,6 +205,4 @@
             app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>
